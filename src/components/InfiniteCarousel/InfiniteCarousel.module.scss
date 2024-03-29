@@ -1,0 +1,40 @@
+.container {
+  margin-inline: auto;
+  max-width: var(--scroller-width);
+}
+
+.container[data-animated="true"] {
+  mask: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
+  overflow: hidden;
+}
+
+.container[data-animated="true"] .list {
+  flex-wrap: nowrap;
+
+  animation: scroll var(--scroller-speed) linear infinite;
+}
+
+.container[data-animated="true"][data-reverse="true"] .list {
+  animation-direction: reverse;
+}
+
+.container[data-animated="true"][data-pause="true"] .list {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--scroller-gap);
+
+  width: max-content;
+}
+
+@keyframes scroll {
+  to {
+    translate: calc(-50% - calc(var(--scroller-gap) / 2));
+  }
+}
